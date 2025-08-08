@@ -57,14 +57,14 @@ body {
 }
 
 /* =========================
-   Carousel + Details Panel
+   Carousel + Details Panel (desktop/tablet)
    ========================= */
 .carousel-shell {
   max-width: 1200px;
   margin: 2rem auto;
   display: grid;
   grid-template-columns: 1fr 560px; /* stage | details */
-  gap: 3.25rem;
+  gap: 1.25rem;
   align-items: center;
   position: relative;
 }
@@ -98,7 +98,7 @@ body {
   background: #f4f7fa;
 }
 
-/* Horizontal arrows absolutely positioned */
+/* Horizontal arrows absolutely positioned on the stage */
 .h-arrow {
   position: absolute;
   top: 50%;
@@ -163,7 +163,7 @@ body {
   z-index: 0;
 }
 
-/* Details panel */
+/* Details panel (desktop/tablet) */
 .details-panel {
   background: #0a0a0a;
   color: #fff;
@@ -172,6 +172,7 @@ body {
   min-height: 260px;
   position: relative;
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+  /* vertical pager sits INSIDE the panel */
 }
 .details-panel .panel-close {
   position: absolute;
@@ -243,33 +244,94 @@ body {
 }
 
 /* =========================
-   Responsive tweaks
+   Mobile: carousel by default
+   ("On mobile, it will be a carousel by default.
+          Tap card => show details in a pop-up.
+          Arrow click => slide only (no details).")
    ========================= */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
+  /* hide the deck view entirely on mobile */
+  .slider-container {
+    display: none !important;
+  }
+  /* single column: stage on top, details modal when opened */
   .carousel-shell {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto;
     gap: 0.75rem;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0 12px;
   }
-  .details-panel {
-    padding: 1.25rem 1rem 1.25rem 4rem;
-    min-height: 220px;
+  .carousel-stage {
+    height: 300px;
   }
-  .details-panel .panel-pager {
-    left: 12px;
-    top: 12px;
-    transform: none;
-  }
+  /* keep arrows inside the viewport */
   .nav {
     width: 44px;
     height: 44px;
     font-size: 22px;
   }
   .left-arrow {
-    left: -22px;
+    left: 6px;
   }
   .right-arrow {
-    right: -22px;
+    right: 6px;
+  }
+  /* smaller slides for mobile */
+  .slide {
+    width: 58vw;
+    max-width: 160px;
+  }
+  .slide img {
+    height: 46vw;
+    max-height: 110px;
+  }
+  .slide h3 {
+    font-size: 1rem;
+  }
+  .slide.active {
+    transform: translateX(0) scale(0.9);
+  }
+  .slide.prev {
+    transform: translateX(-15vw) scale(0.7);
+  }
+  .slide.next {
+    transform: translateX(15vw) scale(0.7);
+  }
+  /* details become a pop-up (hidden by default) */
+  .details-panel {
+    left: 1px;
+    right: 12px;
+    top: auto;
+    min-height: unset;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    display: none; /* default: not shown */
+  }
+  .details-panel.is-open {
+    /* controller can toggle this on tap */
+    display: block;
+  }
+  .details-panel .panel-pager {
+    left: 10px;
+    top: 30px;
+    transform: none;
+    grid-auto-rows: 36px;
+  }
+  .details-panel .pager-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  .details-panel .pager-index {
+    padding: 6px 10px;
+    border-radius: 10px;
+  }
+  .details-panel .panel-content h2 {
+    font-size: 1.4rem;
+  }
+  .details-panel .panel-content .panel-points li {
+    font-size: 1rem;
   }
 }
 
