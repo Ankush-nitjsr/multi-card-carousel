@@ -1,0 +1,299 @@
+// Theme variables
+$primary: #0052cc;
+$accent: #1b9fff;
+$dark: #242b3a;
+$light: #f4f7fa;
+$white: #fff;
+$success: #34c759;
+$font-stack: "Inter", "Segoe UI", "Roboto", "Arial", sans-serif;
+
+body {
+  background: $light;
+  color: $dark;
+  font-family: $font-stack;
+  margin: 0;
+  padding: 0;
+}
+
+#slider-root {
+  padding: 2rem 0;
+}
+
+/* =========================
+   GRID (initial deck view)
+   ========================= */
+.slider-container {
+  background: $white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  width: 100%;
+  background: $white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: $dark;
+  font-size: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  &:hover {
+    box-shadow: 0 6px 16px rgba(0, 82, 204, 0.1);
+    transform: translateY(-4px) scale(1.03);
+  }
+
+  img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    object-fit: cover;
+    height: 120px;
+  }
+
+  h3 {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}
+
+/* =========================
+   Carousel + Details Panel
+   ========================= */
+.carousel-shell {
+  max-width: 1200px;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: 1fr 560px; /* stage | details */
+  gap: 3.25rem;
+  align-items: center;
+  position: relative;
+}
+
+.carousel-stage {
+  position: relative;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  overflow: visible; /* allow arrows to sit outside */
+}
+
+.nav {
+  background: $white;
+  border: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  cursor: pointer;
+  font-size: 28px;
+  color: $dark;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 40;
+
+  &:hover {
+    background: $light;
+  }
+}
+
+/* Horizontal arrows absolutely positioned */
+.h-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.left-arrow {
+  left: -28px;
+}
+.right-arrow {
+  right: -28px;
+}
+
+/* Slides */
+.slide {
+  position: absolute;
+  width: 320px;
+  padding: 1rem 1.25rem 1.25rem;
+  border-radius: 22px;
+  background: $white;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+  text-align: center;
+  transition: transform 0.35s ease, filter 0.35s ease, opacity 0.35s ease;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 18px;
+    margin-bottom: 0.9rem;
+  }
+
+  h3 {
+    margin: 0;
+    font-weight: 800;
+    font-size: 1.8rem;
+  }
+}
+
+/* Stacking states */
+.slide.active {
+  transform: translateX(0) scale(0.9);
+  z-index: 25;
+}
+.slide.prev {
+  transform: translateX(-120px) scale(0.7);
+  filter: blur(1px) saturate(0.9);
+  z-index: 20;
+}
+.slide.next {
+  transform: translateX(120px) scale(0.7);
+  filter: blur(1px) saturate(0.9);
+  z-index: 20;
+}
+.slide.faded {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(60px) scale(0.82);
+  z-index: 0;
+}
+
+/* Details panel */
+.details-panel {
+  background: #0a0a0a;
+  color: $white;
+  border-radius: 28px;
+  padding: 2rem 2rem 2rem 5rem; /* padding-left for vertical pager */
+  min-height: 260px;
+  position: relative;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+
+  .panel-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    color: $white;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .panel-pager {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    gap: 10px;
+    justify-items: center;
+    z-index: 35;
+  }
+
+  .pager-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #2a2a2a;
+    color: $white;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+
+    &:hover {
+      background: #3a3a3a;
+    }
+  }
+
+  .pager-index {
+    background: #2a2a2a;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-weight: 800;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+  }
+
+  .panel-content {
+    h2 {
+      margin: 0 0 0.75rem 0;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .panel-points {
+      margin: 0;
+      padding-left: 1.1rem;
+      line-height: 1.6;
+
+      li {
+        margin-bottom: 0.5rem;
+        font-size: 1.15rem;
+      }
+    }
+  }
+}
+
+/* =========================
+   Responsive tweaks
+   ========================= */
+@media (max-width: 900px) {
+  .carousel-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+  }
+
+  .details-panel {
+    padding: 1.25rem 1rem 1.25rem 4rem;
+    min-height: 220px;
+
+    .panel-pager {
+      left: 12px;
+      top: 12px;
+      transform: none;
+    }
+  }
+
+  .nav {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+
+  .left-arrow {
+    left: -22px;
+  }
+  .right-arrow {
+    right: -22px;
+  }
+}
