@@ -1,0 +1,66 @@
+{
+  "statusCode": 201,
+  "message": "Success",
+  "data": [
+    {
+      "id": 1,
+      "title": "Serene Lake",
+      "image": "https://picsum.photos/id/1015/400/250",
+      "details": "A peaceful lake surrounded by misty mountains, inviting serenity."
+    },
+    {
+      "id": 2,
+      "title": "Sunny Beach",
+      "image": "https://picsum.photos/id/1025/400/250",
+      "details": "Golden sands and turquoise waters, perfect for sun seekers."
+    },
+    {
+      "id": 3,
+      "title": "Misty Forest",
+      "image": "https://picsum.photos/id/103/400/250",
+      "details": "A dense green forest shrouded in morning fog, full of secrets."
+    },
+    {
+      "id": 4,
+      "title": "Starry Night",
+      "image": "https://picsum.photos/id/1040/400/250",
+      "details": "A breathtaking night sky filled with countless twinkling stars."
+    },
+    {
+      "id": 5,
+      "title": "Snowy Peaks",
+      "image": "https://picsum.photos/id/1056/400/250",
+      "details": "Towering snow-capped mountains, a paradise for adventurers."
+    },
+    {
+      "id": 6,
+      "title": "Autumn Pathway",
+      "image": "https://picsum.photos/id/106/400/250",
+      "details": "A leafy trail painted with vibrant autumn colors."
+    },
+    {
+      "id": 7,
+      "title": "Desert Dunes",
+      "image": "https://picsum.photos/id/1073/400/250",
+      "details": "Rolling sand dunes stretching far into the horizon."
+    },
+    {
+      "id": 8,
+      "title": "Lush Waterfall",
+      "image": "https://picsum.photos/id/1080/400/250",
+      "details": "A powerful waterfall cascading into a lush green valley."
+    },
+    {
+      "id": 9,
+      "title": "Blooming Meadow",
+      "image": "https://picsum.photos/id/1084/400/250",
+      "details": "A field bursting with colorful wildflowers in full bloom."
+    },
+    {
+      "id": 10,
+      "title": "Urban Skyline",
+      "image": "https://picsum.photos/id/1011/400/250",
+      "details": "A modern city skyline lit up against the evening sky."
+    }
+  ]
+}
