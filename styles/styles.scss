@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // Theme variables
 $primary: #0052cc;
 $accent: #1b9fff;
@@ -35,7 +37,6 @@ body {
 }
 
 .card {
-  width: 100%;
   background: $white;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -118,10 +119,10 @@ body {
   transform: translateY(-50%);
 }
 .left-arrow {
-  left: -28px;
-}
+  left: -12px;
+} /* nudge slightly outside on desktop */
 .right-arrow {
-  right: -28px;
+  right: -12px;
 }
 
 /* Slides */
@@ -230,6 +231,7 @@ body {
     justify-content: center;
     font-size: 18px;
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+
     &:hover {
       background: #3a3a3a;
     }
@@ -253,6 +255,7 @@ body {
       margin: 0;
       padding-left: 1.1rem;
       line-height: 1.6;
+
       li {
         margin-bottom: 0.5rem;
         font-size: 1.15rem;
@@ -261,11 +264,164 @@ body {
   }
 }
 
+/* ===== Enhanced modal UI (details panel) ===== */
+.dp-header {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.dp-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+.dp-headings h2 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+.dp-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+.dp-tags {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.chip {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  line-height: 1;
+}
+
+/* Body & meta */
+.dp-body {
+  margin-top: 0.5rem;
+  display: grid;
+  gap: 1rem;
+}
+.dp-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.meta-item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 0.6rem 0.75rem;
+}
+.meta-label {
+  display: block;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+.meta-value {
+  font-weight: 700;
+}
+
+/* Footer actions (progress + link + random) */
+.dp-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  .dp-progress {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $light;
+    letter-spacing: 0.02em;
+  }
+
+  .dp-link {
+    color: $accent;
+    text-decoration: none;
+    font-weight: 700;
+
+    &:hover {
+      text-decoration: underline;
+    }
+    &:focus-visible {
+      outline: 0;
+      box-shadow: 0 0 0 3px rgba(27, 159, 255, 0.35);
+      border-radius: 8px;
+    }
+  }
+
+  .dp-random {
+    background: $accent;
+    border: none;
+    color: $white;
+    padding: 0.45rem 0.85rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 800;
+    transition: background 0.15s ease, transform 0.15s ease,
+      box-shadow 0.15s ease;
+    box-shadow: 0 8px 20px rgba(27, 159, 255, 0.22);
+
+    &:hover {
+      background: color.adjust($accent, $lightness: -8%);
+      transform: translateY(-1px);
+    }
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(27, 159, 255, 0.22);
+    }
+    &:focus-visible {
+      outline: 0;
+      box-shadow: 0 0 0 3px rgba(27, 159, 255, 0.35);
+    }
+  }
+}
+
+/* Modal polish + reduced motion */
+.details-panel {
+  backdrop-filter: saturate(1.05);
+  opacity: 0;
+  transform: translateY(6px);
+  animation: dp-in 0.22s ease forwards;
+}
+@keyframes dp-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+*:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(27, 159, 255, 0.35);
+  border-radius: 10px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dp-footer .dp-random,
+  .details-panel,
+  .slide {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 /* =========================
    Mobile: carousel by default
-   ("On mobile, it will be a carousel by default.
-          Tap card => show details in a pop-up.
-          Arrow click => slide only (no details).")
+   (Tap card => show details pop-up; arrow => slide only)
    ========================= */
 @media (max-width: 600px) {
   /* hide the deck view entirely on mobile */
@@ -304,6 +460,7 @@ body {
   .slide {
     width: 58vw;
     max-width: 160px;
+
     img {
       height: 46vw;
       max-height: 110px;
@@ -330,10 +487,10 @@ body {
     min-height: unset;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
     display: none; /* default: not shown */
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
   .details-panel.is-open {
-    /* controller can toggle this on tap */
-    display: block;
+    display: block; /* controller toggles on tap */
   }
 
   .details-panel .panel-pager {
@@ -352,10 +509,22 @@ body {
     border-radius: 10px;
   }
 
-  .details-panel .panel-content h2 {
-    font-size: 1.4rem;
+  .dp-header {
+    grid-template-columns: 48px 1fr;
+    gap: 0.75rem;
   }
-  .details-panel .panel-content .panel-points li {
-    font-size: 1rem;
+  .dp-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+  }
+  .dp-headings h2 {
+    font-size: 1.25rem;
+  }
+  .dp-subtitle {
+    font-size: 0.9rem;
+  }
+  .dp-footer {
+    flex-wrap: wrap;
   }
 }
