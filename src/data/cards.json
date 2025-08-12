@@ -6,61 +6,121 @@
       "id": 1,
       "title": "Serene Lake",
       "image": "https://picsum.photos/id/447/1280/853",
-      "details": "A peaceful lake surrounded by misty mountains, inviting serenity."
+      "tags": ["Nature", "Calm"],
+      "details": [
+        "A peaceful lake surrounded by misty mountains, inviting serenity.",
+        "Gentle ripples reflect the dawn light with perfect symmetry.",
+        "Kayaking and quiet shoreline walks are popular at sunrise.",
+        "Wildflowers bloom along the northern bank in late spring."
+      ]
     },
     {
       "id": 2,
       "title": "Sunny Beach",
       "image": "https://picsum.photos/id/449/4928/3264",
-      "details": "Golden sands and turquoise waters, perfect for sun seekers."
+      "tags": ["Coast", "Summer"],
+      "details": [
+        "Golden sands and turquoise waters, perfect for sun seekers.",
+        "Shallow tide pools reveal shells and tiny crabs at low tide.",
+        "Beach cafés serve iced lemonades and fresh fruit bowls.",
+        "Evening sunsets paint the horizon in orange and rose."
+      ]
     },
     {
       "id": 3,
       "title": "Misty Forest",
       "image": "https://picsum.photos/id/229/2300/1533",
-      "details": "A dense green forest shrouded in morning fog, full of secrets."
+      "tags": ["Woods", "Fog"],
+      "details": [
+        "A dense green forest shrouded in morning fog, full of secrets.",
+        "Ferns carpet the ground beneath towering evergreens.",
+        "Birdsong echoes softly through the damp canopy.",
+        "Footbridges cross narrow creeks along the eastern trail."
+      ]
     },
     {
       "id": 4,
       "title": "Starry Night",
       "image": "https://picsum.photos/id/903/400/250",
-      "details": "A breathtaking night sky filled with countless twinkling stars."
+      "tags": ["Night", "Sky"],
+      "details": [
+        "A breathtaking night sky filled with countless twinkling stars.",
+        "The Milky Way arcs clearly on moonless summer nights.",
+        "Cool mountain air keeps the sky crisp and transparent.",
+        "Best viewed after 10 PM away from campsite lights."
+      ]
     },
     {
       "id": 5,
       "title": "Snowy Peaks",
       "image": "https://picsum.photos/id/256/2000/697",
-      "details": "Towering snow-capped mountains, a paradise for adventurers."
+      "tags": ["Alpine", "Winter"],
+      "details": [
+        "Towering snow-capped mountains, a paradise for adventurers.",
+        "Glacial winds sweep over knife-edge ridgelines.",
+        "Ski tours start at the western lodge at first light.",
+        "Avalanche advisories are posted daily at the trailhead."
+      ]
     },
     {
       "id": 6,
       "title": "Autumn Pathway",
       "image": "https://picsum.photos/id/324/3888/2592",
-      "details": "A leafy trail painted with vibrant autumn colors."
+      "tags": ["Fall", "Trail"],
+      "details": [
+        "A leafy trail painted with vibrant autumn colors.",
+        "Maples and oaks shed crimson and amber leaves.",
+        "Wooden benches dot the route every half-kilometer.",
+        "Early mornings bring a faint cinnamon scent from the grove."
+      ]
     },
     {
       "id": 7,
       "title": "Desert Dunes",
       "image": "https://picsum.photos/id/196/2048/1536",
-      "details": "Rolling sand dunes stretching far into the horizon."
+      "tags": ["Desert", "Dunes"],
+      "details": [
+        "Rolling sand dunes stretching far into the horizon.",
+        "Wind carves fresh ripples after each hot afternoon.",
+        "Guided sunrise hikes avoid midday heat.",
+        "Carry extra water; shade is scarce beyond the first ridge."
+      ]
     },
     {
       "id": 8,
       "title": "Lush Waterfall",
       "image": "https://picsum.photos/id/15/2500/1667",
-      "details": "A powerful waterfall cascading into a lush green valley."
+      "tags": ["Waterfall", "Valley"],
+      "details": [
+        "A powerful waterfall cascading into a lush green valley.",
+        "Mist nurtures mossy stones and orchids nearby.",
+        "A lookout deck provides a safe photo spot.",
+        "Trails can be slippery—wear shoes with solid grip."
+      ]
     },
     {
       "id": 9,
       "title": "Blooming Meadow",
       "image": "https://picsum.photos/id/106/2592/1728",
-      "details": "A field bursting with colorful wildflowers in full bloom."
+      "tags": ["Flowers", "Spring"],
+      "details": [
+        "A field bursting with colorful wildflowers in full bloom.",
+        "Butterflies cluster near the southern fence line.",
+        "Peak bloom usually lasts two to three weeks.",
+        "Please stay on paths to protect delicate stems."
+      ]
     },
     {
       "id": 10,
       "title": "Urban Skyline",
       "image": "https://picsum.photos/id/391/2980/2151",
-      "details": "A modern city skyline lit up against the evening sky."
+      "tags": ["City", "Nightlife"],
+      "details": [
+        "A modern city skyline lit up against the evening sky.",
+        "Riverside promenades offer panoramic viewpoints.",
+        "Rooftop cafés are busiest around sunset.",
+        "Night ferries reflect neon across the water."
+      ]
     }
   ]
 }
