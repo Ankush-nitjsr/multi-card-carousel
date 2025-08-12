@@ -78,6 +78,7 @@ body {
   overflow: visible; /* allow arrows to sit outside */
 }
 
+/* Arrows */
 .nav {
   background: #fff;
   border: none;
@@ -95,6 +96,10 @@ body {
 }
 .nav:hover {
   background: #f4f7fa;
+}
+.nav:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(27, 159, 255, 0.35);
 }
 
 /* Horizontal arrows absolutely positioned on the stage */
@@ -170,6 +175,10 @@ body {
   min-height: 260px;
   position: relative;
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+  backdrop-filter: saturate(1.05);
+  opacity: 0;
+  transform: translateY(6px);
+  animation: dp-in 0.22s ease forwards;
   /* vertical pager sits INSIDE the panel */
 }
 .details-panel .panel-close {
@@ -192,6 +201,10 @@ body {
 .details-panel .panel-close:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+.details-panel .panel-close:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(27, 159, 255, 0.35);
+}
 .details-panel .panel-pager {
   position: absolute;
   left: 16px;
@@ -200,7 +213,7 @@ body {
   display: grid;
   gap: 10px;
   justify-items: center;
-  z-index: 35;
+  z-index: 45; /* above stage arrows */
 }
 .details-panel .pager-btn {
   width: 42px;
@@ -218,6 +231,13 @@ body {
 }
 .details-panel .pager-btn:hover {
   background: #3a3a3a;
+}
+.details-panel .pager-btn:active {
+  transform: translateY(0);
+}
+.details-panel .pager-btn:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(27, 159, 255, 0.35);
 }
 .details-panel .pager-index {
   background: #2a2a2a;
@@ -241,7 +261,6 @@ body {
   font-size: 1.15rem;
 }
 
-/* ===== Enhanced modal UI (details panel) ===== */
 .dp-header {
   display: grid;
   grid-template-columns: 64px 1fr;
@@ -317,7 +336,7 @@ body {
   font-weight: 700;
 }
 
-/* Footer actions (progress + link + random) */
+/* Footer actions (progress + link) */
 .dp-footer {
   margin-top: 1rem;
   display: flex;
@@ -372,13 +391,6 @@ body {
 }
 
 /* Modal polish + reduced motion */
-.details-panel {
-  backdrop-filter: saturate(1.05);
-  opacity: 0;
-  transform: translateY(6px);
-  animation: dp-in 0.22s ease forwards;
-}
-
 @keyframes dp-in {
   to {
     opacity: 1;
@@ -401,14 +413,13 @@ body {
 }
 /* =========================
    Mobile: carousel by default
-   (Tap card => show details pop-up; arrow => slide only)
+   (Tap card => show details pop-up; arrows => slide only)
    ========================= */
 @media (max-width: 600px) {
-  /* hide the deck view entirely on mobile */
+  /* hide deck on mobile */
   .slider-container {
     display: none !important;
   }
-  /* single column: stage on top, details modal when opened */
   .carousel-shell {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -416,11 +427,11 @@ body {
     margin: 0 auto;
     max-width: 100%;
     padding: 0 12px;
+    position: relative;
   }
   .carousel-stage {
     height: 300px;
   }
-  /* keep arrows inside the viewport */
   .nav {
     width: 44px;
     height: 44px;
@@ -455,16 +466,22 @@ body {
   }
   /* details become a pop-up (hidden by default) */
   .details-panel {
-    left: 1px;
+    position: fixed;
+    top: 12px;
+    left: 12px;
     right: 12px;
-    top: auto;
-    min-height: unset;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-    display: none; /* default: not shown */
+    max-height: 85vh;
+    height: auto;
+    overflow-y: auto;
     border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    border-radius: 20px;
+    background: #0a0a0a;
+    display: none;
+    z-index: 100;
   }
   .details-panel.is-open {
-    display: block; /* controller toggles on tap */
+    display: block;
   }
   .details-panel .panel-pager {
     left: 10px;
